@@ -1,8 +1,8 @@
-package com.project.androidretrofitexample.Model
+package com.project.androidretrofitexample.model
 
 import com.google.gson.annotations.SerializedName
 
-data class User(
+data class Users(
     @SerializedName("login") val login:String,
     @SerializedName("id") val id:Int,
     @SerializedName("node_id") val nodeId:String,

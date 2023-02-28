@@ -1,9 +1,7 @@
-package com.project.androidretrofitexample.Adapter
+package com.project.androidretrofitexample.adapter
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,16 +10,16 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.project.androidretrofitexample.Model.User
+import com.project.androidretrofitexample.model.Users
 import com.project.androidretrofitexample.R
 import com.project.androidretrofitexample.View.UserInfoActivity
 
 
 class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
-    private var users: List<User> = emptyList()
+    private var users: List<Users> = emptyList()
 
-    fun setUsers(users: List<User>) {
+    fun setUsers(users: List<Users>) {
         this.users = users
         notifyDataSetChanged()
     }

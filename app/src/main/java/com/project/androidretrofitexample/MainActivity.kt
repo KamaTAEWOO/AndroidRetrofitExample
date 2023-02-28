@@ -1,18 +1,16 @@
 package com.project.androidretrofitexample
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.project.androidretrofitexample.Adapter.RecyclerViewAdapter
-import com.project.androidretrofitexample.Model.User
-import com.project.androidretrofitexample.R
-import com.project.androidretrofitexample.Sevice.UserService
-import com.project.androidretrofitexample.ViewModel.UserViewModel
+import com.project.androidretrofitexample.adapter.RecyclerViewAdapter
+import com.project.androidretrofitexample.model.User
+import com.project.androidretrofitexample.model.Users
+import com.project.androidretrofitexample.sevice.UserService
+import com.project.androidretrofitexample.viewModel.UserViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,8 +18,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
-
-    private var finishLoadDataCheck = false
 
     private lateinit var userViewModel: UserViewModel
     private lateinit var adapter: RecyclerViewAdapter
@@ -32,25 +28,29 @@ class MainActivity : AppCompatActivity() {
 
         // load data
         loadData()
+        getUsersInfo()
     }
 
     // 230227 tw Retrofit 사용
-    private fun loadData() {
+    public fun loadData() {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.github.com/")
+            .baseUrl(MAINURL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        val userService = retrofit.create(UserService::class.java)
+        userService = retrofit.create(UserService::class.java)
+    }
 
-        userService.getUserbyLogin()
-            .enqueue(object: Callback<List<User>> {
-                override fun onFailure(call: Call<List<User>>, t: Throwable) {
+    // 230227 tw all UserData
+    private fun getUsersInfo() {
+        userService!!.getUsers()
+            .enqueue(object: Callback<List<Users>> {
+                override fun onFailure(call: Call<List<Users>>, t: Throwable) {
                     // 실패처리
                     Log.d(TAG, "Retrofit 실패")
                 }
 
-                override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+                override fun onResponse(call: Call<List<Users>>, response: Response<List<Users>>) {
                     var count = 0
                     // 성공처리
                     Log.d(TAG, "Retrofit 성공")
@@ -89,6 +89,8 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "MainActivity::"
-        public val users = arrayListOf<User>()
+        public val users = arrayListOf<Users>()
+        const val MAINURL = "https://api.github.com/"
+        var userService: UserService? = null
     }
 }
