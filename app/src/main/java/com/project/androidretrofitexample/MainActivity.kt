@@ -6,8 +6,7 @@ import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.project.androidretrofitexample.View.RecyclerViewAdapter
+import com.project.androidretrofitexample.view.RecyclerViewAdapter
 import com.project.androidretrofitexample.databinding.ActivityMainBinding
 import com.project.androidretrofitexample.model.Users
 import com.project.androidretrofitexample.sevice.UserService

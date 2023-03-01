@@ -1,11 +1,9 @@
-package com.project.androidretrofitexample.View
+package com.project.androidretrofitexample.view
 
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.project.androidretrofitexample.MainActivity

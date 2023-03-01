@@ -1,4 +1,4 @@
-package com.project.androidretrofitexample.View
+package com.project.androidretrofitexample.view
 
 import android.annotation.SuppressLint
 import android.content.Intent

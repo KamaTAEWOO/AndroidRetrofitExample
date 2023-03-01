@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidRetrofitExample">
         <activity
-            android:name=".View.UserInfoActivity"
+            android:name=".view.UserInfoActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
