@@ -6,9 +6,11 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.project.androidretrofitexample.MainActivity
 import com.project.androidretrofitexample.R
+import com.project.androidretrofitexample.databinding.ActivityUserInfoBinding
 import com.project.androidretrofitexample.model.User
 import retrofit2.Call
 import retrofit2.Callback
@@ -16,20 +18,14 @@ import retrofit2.Response
 
 class UserInfoActivity : AppCompatActivity() {
 
-    public lateinit var img: ImageView
-    public lateinit var userInfo: TextView
+    private lateinit var binding: ActivityUserInfoBinding
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user_info)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_user_info)
 
         MainActivity.users.clear() // 초기화
-
-        img = findViewById(R.id.Img)
-        userInfo = findViewById(R.id.userInfo)
-
-        var main = MainActivity()
 
         if(intent.hasExtra("login")) {
             val login = intent.getStringExtra("login")
@@ -60,19 +56,19 @@ class UserInfoActivity : AppCompatActivity() {
                         Log.d(TAG,it.toString())
 
                         // image load
-                        Glide.with(img)
+                        Glide.with(binding.Img)
                             .load(it.avaterUrl)
                             .centerCrop()
-                            .into(img)
+                            .into(binding.Img)
 
-                        userInfo.text = "ID : ${it.login} \n"                +
-                                        "Name : ${it.name} \n"               +
-                                        "Company : ${it.company} \n"         +
-                                        "Location : ${it.location} \n"       +
-                                        "Followers : ${it.followers} \n"     +
-                                        "Followering : ${it.following} \n"   +
-                                        "Created at : ${it.createdAt} \n"    +
-                                        "Updated at : ${it.updatedAt} \n"
+                        binding.userInfo.text = "ID : ${it.login} \n"                +
+                                                "Name : ${it.name} \n"               +
+                                                "Company : ${it.company} \n"         +
+                                                "Location : ${it.location} \n"       +
+                                                "Followers : ${it.followers} \n"     +
+                                                "Followering : ${it.following} \n"   +
+                                                "Created at : ${it.createdAt} \n"    +
+                                                "Updated at : ${it.updatedAt} \n"
                     }
                 }
             })

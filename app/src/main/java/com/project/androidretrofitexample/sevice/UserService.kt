@@ -8,9 +8,11 @@ import retrofit2.http.Path
 
 public interface UserService {
 
+    //  230301 tw Users Data
     @GET("users")
     fun getUsers(): Call<List<Users>>
 
+    //  230301 tw User Data
     @GET("users/{name}")
     fun getUserByLogin(
         @Path("name") name: String

@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    // Use DataBinding
+    id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
 }
 
 android {
@@ -28,6 +31,11 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    // Use DataBinding
+    dataBinding {
+        enabled = true
     }
 }
 

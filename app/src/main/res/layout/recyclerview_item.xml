@@ -28,6 +28,4 @@
         android:textColor="#020202"
         app:layout_constraintStart_toEndOf="@id/userImg"
         app:layout_constraintTop_toTopOf="@id/userImg" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

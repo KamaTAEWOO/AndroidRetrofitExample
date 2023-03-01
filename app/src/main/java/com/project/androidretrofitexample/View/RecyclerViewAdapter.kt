@@ -1,4 +1,4 @@
-package com.project.androidretrofitexample.adapter
+package com.project.androidretrofitexample.View
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.project.androidretrofitexample.model.Users
 import com.project.androidretrofitexample.R
-import com.project.androidretrofitexample.View.UserInfoActivity
 
 
 class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {

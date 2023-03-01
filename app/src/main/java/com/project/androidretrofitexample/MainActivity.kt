@@ -3,11 +3,12 @@ package com.project.androidretrofitexample
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.project.androidretrofitexample.adapter.RecyclerViewAdapter
-import com.project.androidretrofitexample.model.User
+import com.project.androidretrofitexample.View.RecyclerViewAdapter
+import com.project.androidretrofitexample.databinding.ActivityMainBinding
 import com.project.androidretrofitexample.model.Users
 import com.project.androidretrofitexample.sevice.UserService
 import com.project.androidretrofitexample.viewModel.UserViewModel
@@ -19,12 +20,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
+
     private lateinit var userViewModel: UserViewModel
     private lateinit var adapter: RecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         // load data
         loadData()
@@ -34,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     // 230227 tw Retrofit 사용
     public fun loadData() {
         val retrofit = Retrofit.Builder()
-            .baseUrl(MAINURL)
+            .baseUrl(URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -78,9 +81,8 @@ class MainActivity : AppCompatActivity() {
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         adapter = RecyclerViewAdapter()
 
-        val recyclerView = findViewById<RecyclerView>(R.id.rvUsers)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = adapter
+        binding.rvUsers.layoutManager = LinearLayoutManager(this)
+        binding.rvUsers.adapter = adapter
 
         userViewModel.getUsers().observe(this, {users ->
             adapter.setUsers(users)
@@ -90,7 +92,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "MainActivity::"
         public val users = arrayListOf<Users>()
-        const val MAINURL = "https://api.github.com/"
+        const val URL = "https://api.github.com/"
         var userService: UserService? = null
     }
 }
