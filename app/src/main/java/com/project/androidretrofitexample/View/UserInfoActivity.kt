@@ -36,8 +36,6 @@ class UserInfoActivity : AppCompatActivity() {
 
             // 230228 tw 해당 user 데이터 들고 오기
             getUserInfoByLogin(login!!)
-
-
         }
     }
 
