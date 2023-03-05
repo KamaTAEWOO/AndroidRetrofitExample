@@ -18,7 +18,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
-    //20230305
+
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var userViewModel: UserViewModel
