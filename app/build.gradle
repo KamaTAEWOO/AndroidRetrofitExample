@@ -3,7 +3,8 @@ plugins {
     id 'kotlin-android'
     // Use DataBinding
     id 'kotlin-kapt'
-    id 'kotlin-android-extensions'
+    id 'com.google.devtools.ksp' version '1.7.20-1.0.6'
+    //id 'kotlin-android-extensions'
 }
 
 android {
@@ -59,4 +60,11 @@ dependencies {
     // lifecycle
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0"
+    // room
+    implementation 'androidx.room:room-runtime:2.2.0'
+    implementation 'androidx.room:room-ktx:2.2.0'
+    kapt 'androidx.room:room-common:2.2.0'
+    annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
+    kapt 'androidx.room:room-compiler:2.2.5'
 }
